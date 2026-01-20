@@ -29,7 +29,7 @@ The lab simulates a "Red Team vs. Blue Team" scenario entirely within Google Clo
 ### 1. Installation
 Clone the repository and enter the directory:
 ```bash
-git clone [https://github.com/YOUR_USERNAME/genai-purple-team-lab.git](https://github.com/YOUR_USERNAME/genai-purple-team-lab.git)
+git clone [https://github.com/AndrewLiebowitz/genai-purple-team-lab.git](https://github.com/AndrewLiebowitz/genai-purple-team-lab.git)
 cd genai-purple-team-lab
 
 
@@ -41,9 +41,9 @@ Initialize the lab infrastructure. This script containerizes the Red Team (Alpha
 bash scripts/setup.sh
 
 2. Verify Trace Capabilities
-Ensure your Google Cloud Project is capturing deep forensic data. If you see a warning during setup about "Trace Storage," the setup script attempts to enable the Cloud Trace API automatically.
+Ensure your Google Cloud Project is capturing deep forensic data. If you see a warning during setup about "Trace Storage," the setup script attempts to enable the Cloud Trace API automatically. You may still need to visit the Trace Explorer and click "Enable Trace"
 
-Why this matters: Without the Trace API enabled, you will see high-level latency but miss the critical payload details (the "Deep Storage") required to prove what data was stolen.
+Why this matters: Without the Trace API enabled, you will see high-level latency but miss the critical payload details (the "Deep Storage") required to prove what data was stolen, and without upgrading the log storage you wont be able to visuall inspect the traces.
 
 3. Launch the Attack
 Trigger the autonomous botnet. This script spins up a fleet of Red Team agents that concurrently probe Agent Beta for vulnerabilities.
