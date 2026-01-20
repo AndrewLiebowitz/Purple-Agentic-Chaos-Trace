@@ -1,0 +1,7 @@
+flask
+gunicorn
+google-genai
+opentelemetry-api
+opentelemetry-sdk
+opentelemetry-instrumentation-flask
+opentelemetry-exporter-gcp-trace
