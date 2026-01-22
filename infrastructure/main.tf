@@ -38,7 +38,8 @@ resource "google_project_iam_member" "sa_permissions" {
     "roles/artifactregistry.writer",
     "roles/logging.logWriter",
     "roles/run.invoker",
-    "roles/run.admin"
+    "roles/run.admin",
+    "roles/iam.serviceAccountUser"
   ])
   project = var.project_id
   role    = each.key
