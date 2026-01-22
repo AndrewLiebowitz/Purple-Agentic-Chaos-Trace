@@ -10,7 +10,7 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', '$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/agent-alpha:latest']
 
-  # 3. Deploy to Cloud Run
+  # 3. Deploy to Cloud Run (SECURE: Private Access Only)
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
@@ -23,7 +23,7 @@ steps:
       - '$_REGION'
       - '--platform'
       - 'managed'
-      - '--allow-unauthenticated' # Optional: Remove if you want strict IAM control
+      # Removed '--allow-unauthenticated' to ensure private access
 
   # -------------------------------------------------------------------------
   # AGENT BETA (The Victim)
@@ -36,7 +36,7 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', '$_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/agent-beta:latest']
 
-  # 6. Deploy to Cloud Run
+  # 6. Deploy to Cloud Run (SECURE: Private Access Only)
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
@@ -49,4 +49,14 @@ steps:
       - '$_REGION'
       - '--platform'
       - 'managed'
-      - '--allow-unauthenticated' # Optional: Remove
+      # Removed '--allow-unauthenticated' to ensure private access
+
+# -------------------------------------------------------------------------
+# CONFIGURATION FIX
+# -------------------------------------------------------------------------
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+substitutions:
+  _REGION: us-central1
+  _REPO_NAME: agents-repo
